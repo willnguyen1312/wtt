@@ -23,7 +23,7 @@ export default function App() {
         <button type="button">Submit</button>
       </form>
 
-      {message && <p role="alert">{message}</p>}
+      {message && <p>{message}</p>}
     </main>
   );
 }
