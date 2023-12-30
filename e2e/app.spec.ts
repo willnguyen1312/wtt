@@ -6,6 +6,7 @@ test("successful user flow", async ({ page }) => {
   // Arrange
   await page.goto("/");
   await checkA11y(page);
+  await expect(page.getByRole("alert")).not.toBeAttached();
 
   // Act
   const name = faker.person.fullName();

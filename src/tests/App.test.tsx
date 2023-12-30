@@ -11,6 +11,7 @@ describe("App", () => {
     const user = userEvent.setup();
     const { container } = render(<App />);
     await checkA11y(container);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
 
     // Act
     const name = faker.person.fullName();
