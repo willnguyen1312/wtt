@@ -1,5 +1,5 @@
+import axios from "axios";
 import { useState } from "react";
-import { getMessageFromServer } from "./callApi";
 
 export default function App() {
   const [message, setMessage] = useState<string>("");
@@ -9,8 +9,8 @@ export default function App() {
     const data = new FormData(event.currentTarget);
     const name = data.get("name");
 
-    const result = await getMessageFromServer(name as string);
-    setMessage(result.message);
+    const result = await axios.post("/api/message", { name });
+    setMessage(result.data.message);
   };
 
   return (
@@ -20,7 +20,7 @@ export default function App() {
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input required id="name" name="name" type="text" />
-        <button>Submit</button>
+        <button type="button">Submit</button>
       </form>
 
       {message && <p role="alert">{message}</p>}
