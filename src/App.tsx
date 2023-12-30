@@ -1,10 +1,3 @@
-import {
-  Button,
-  ChakraProvider,
-  FormControl,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
 import { useState } from "react";
 import { getMessageFromServer } from "./callApi";
 
@@ -21,20 +14,16 @@ export default function App() {
   };
 
   return (
-    <ChakraProvider>
-      <main>
-        <h1>Submission form</h1>
+    <main>
+      <h1>Submission form</h1>
 
-        <form onSubmit={handleSubmit}>
-          <FormControl>
-            <FormLabel>Name</FormLabel>
-            <Input required name="name" type="text" />
-          </FormControl>
-          <Button type="submit">Submit</Button>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
+        <input required id="name" name="name" type="text" />
+        <button>Submit</button>
+      </form>
 
-        {message && <p role="alert">{message}</p>}
-      </main>
-    </ChakraProvider>
+      {message && <p role="alert">{message}</p>}
+    </main>
   );
 }
