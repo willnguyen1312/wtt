@@ -16,8 +16,8 @@ describe("App", () => {
 
     const wrapper = shallow(<App />);
     const inputName = wrapper.find("input");
-
     inputName.simulate("change", { target: { value: name } });
+
     const form = wrapper.find("form");
     form.simulate("submit", { preventDefault: () => {} });
 
