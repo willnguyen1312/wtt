@@ -1,1 +1,1 @@
-# WTT - What To Test
+# WTT - What To Test 🙈
