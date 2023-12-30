@@ -9,9 +9,14 @@ test("successful user flow", async ({ page }) => {
   await expect(page.getByRole("alert")).not.toBeAttached();
 
   // Act
+  const submitButton = page.getByRole("button", { name: "Submit" });
+  await submitButton.click();
+  const nameInput = page.getByLabel("Name");
+  await expect(nameInput).toBeFocused();
+
   const name = faker.person.fullName();
   await page.getByLabel("Name").fill(name);
-  await page.getByRole("button", { name: "Submit" }).click();
+  await submitButton.click();
 
   // Assert
   await expect(page.getByRole("alert")).toHaveText(`Hello ${name}`);
