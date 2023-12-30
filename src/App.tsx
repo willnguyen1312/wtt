@@ -20,7 +20,7 @@ export default function App() {
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input required id="name" name="name" type="text" />
-        <button type="button">Submit</button>
+        <button>Submit</button>
       </form>
 
       {message && <p>{message}</p>}
