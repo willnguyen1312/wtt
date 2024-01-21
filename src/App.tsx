@@ -34,6 +34,12 @@ export default function App() {
         </form>
 
         {message && <p role="alert">{message}</p>}
+
+        <div>
+          <div>
+            hello <a href="https://namnguyen.design">link</a> nha
+          </div>
+        </div>
       </main>
     </ChakraProvider>
   );

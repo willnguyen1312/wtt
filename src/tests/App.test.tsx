@@ -30,4 +30,20 @@ describe("App", () => {
     // Assert
     expect(await screen.findByRole("alert")).toHaveTextContent(`Hello ${name}`);
   });
+
+  it("work nicely", () => {
+    const App = () => (
+      <div>
+        <p>hello</p> <a href="https://namnguyen.design">link</a> <p>nha</p>
+      </div>
+    );
+
+    render(<App />);
+
+    screen.logTestingPlaygroundURL();
+
+    screen.getByText(/hello/i);
+    screen.getByText(/nha/i);
+    screen.getByRole("link", { name: /link/i });
+  });
 });
