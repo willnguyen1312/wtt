@@ -31,19 +31,25 @@ describe("App", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(`Hello ${name}`);
   });
 
-  it("work nicely", () => {
+  it.only("work nicely", () => {
     const App = () => (
-      <div>
-        <p>hello</p> <a href="https://namnguyen.design">link</a> <p>nha</p>
-      </div>
+      <main>
+        <h1>Hello App</h1>
+
+        <div>
+          <p>hello</p> <a href="https://namnguyen.design">link</a> <p>nha</p>
+        </div>
+      </main>
     );
 
     render(<App />);
 
-    screen.logTestingPlaygroundURL();
+    expect(screen.getByRole("link", { name: /link/i })).toBeInTheDocument();
 
-    screen.getByText(/hello/i);
-    screen.getByText(/nha/i);
-    screen.getByRole("link", { name: /link/i });
+    expect(
+      screen.getByText((_, element) => {
+        return "hello link nha" === element?.textContent;
+      }),
+    ).toBeInTheDocument();
   });
 });
