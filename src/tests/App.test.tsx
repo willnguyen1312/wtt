@@ -31,7 +31,7 @@ describe("App", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(`Hello ${name}`);
   });
 
-  it.only("work nicely", () => {
+  it("work nicely", () => {
     const App = () => (
       <main>
         <h1>Hello App</h1>
@@ -49,7 +49,7 @@ describe("App", () => {
     expect(
       screen.getByText((_, element) => {
         return "hello link nha" === element?.textContent;
-      }),
+      })
     ).toBeInTheDocument();
   });
 });
