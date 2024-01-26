@@ -53,5 +53,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "stackblitz": {
+    "startCommand": "pnpm test"
   }
 }
