@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function useForm(defaultState: string, label: string) {
   const [value, setValue] = useState(defaultState);
 
-  const FormComponent = () => {
+  const FormComponent = ({ formValue }: { formValue: string }) => {
+    useEffect(() => {
+      console.log("render with ", formValue);
+    }, []);
+
     return (
       <form>
         <label htmlFor={label}>
@@ -29,8 +33,8 @@ export default function App() {
   return (
     <>
       <h1>{formValue}</h1>
-      {/* <FormComponent /> */}
-      {FormComponent()}
+      {/* <FormComponent formValue={formValue} /> */}
+      {FormComponent({ formValue })}
     </>
   );
 }
