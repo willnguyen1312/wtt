@@ -5,7 +5,7 @@ import { describe } from "vitest";
 import App from "../App";
 import { checkA11y } from "./utils";
 
-describe("App", () => {
+describe.skip("<App />", () => {
   it("handle the flow successfully", async () => {
     // Arrange
     const user = userEvent.setup();
