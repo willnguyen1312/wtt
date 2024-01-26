@@ -20,7 +20,7 @@ function useForm(defaultState: string, label: string) {
     );
   };
 
-  return [value, FormComponent, setValue] as const;
+  return [value, FormComponent] as const;
 }
 
 export default function App() {
