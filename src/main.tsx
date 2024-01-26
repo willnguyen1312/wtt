@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import App from "./LoseFocusApp.tsx";
 
 const startApp = async () => {
   if (process.env.NODE_ENV === "development") {
@@ -13,6 +13,6 @@ startApp().then(() => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 });
