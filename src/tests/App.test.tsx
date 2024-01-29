@@ -5,7 +5,7 @@ import { describe } from "vitest";
 import App from "../App";
 import { checkA11y } from "./utils";
 
-describe.skip("<App />", () => {
+describe("<App />", () => {
   it("handle the flow successfully", async () => {
     // Arrange
     const user = userEvent.setup();
@@ -32,9 +32,18 @@ describe.skip("<App />", () => {
   });
 
   it("work nicely", () => {
+    const list: string[] = ["Milk", "Cheese", "Blue cheese", "Feta"];
     const App = () => (
       <main>
         <h1>Hello App</h1>
+
+        <ul>
+          {list.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <button>aha</button>
 
         <div>
           <p>hello</p> <a href="https://namnguyen.design">link</a> <p>nha</p>
@@ -49,7 +58,17 @@ describe.skip("<App />", () => {
     expect(
       screen.getByText((_, element) => {
         return "hello link nha" === element?.textContent;
-      }),
+      })
     ).toBeInTheDocument();
+
+    screen.logTestingPlaygroundURL();
+
+    screen.getAllByRole("listitem").forEach((element, index) => {
+      expect(element.textContent).toBe(list[index]);
+    });
+
+    screen.getByRole("button", {
+      name: /aha/i,
+    });
   });
 });
