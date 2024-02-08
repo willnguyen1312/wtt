@@ -58,7 +58,7 @@ describe("<App />", () => {
     expect(
       screen.getByText((_, element) => {
         return "hello link nha" === element?.textContent;
-      })
+      }),
     ).toBeInTheDocument();
 
     screen.logTestingPlaygroundURL();
