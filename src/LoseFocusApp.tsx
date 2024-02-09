@@ -47,14 +47,14 @@ function useForm(defaultState: string, label: string) {
 export default function App() {
   const [formValue, FormComponent, AnotherFormComponent] = useForm(
     "N",
-    "Your name",
+    "Your name"
   );
 
   return (
     <>
       <h1>{formValue}</h1>
       {/* <FormComponent formValue={formValue} /> */}
-      {/* {FormComponent({ formValue })} */}
+      {FormComponent({ formValue })}
       {AnotherFormComponent}
     </>
   );

@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
-import { App } from "./Playground";
+// import { App } from "./Playground";
+import App from "./MemoryLeak";
 
 const startApp = async () => {
   if (process.env.NODE_ENV === "development") {
@@ -12,6 +13,6 @@ startApp().then(() => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <>
       <App />
-    </>,
+    </>
   );
 });
