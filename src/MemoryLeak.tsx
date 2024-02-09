@@ -1,9 +1,9 @@
-import { EventEmitter } from "events";
+import EventEmitter from "events";
 
 import { useEffect, useReducer } from "react";
 
-const eventEmitter = new EventEmitter();
 export default function MemoryLeak() {
+  const eventEmitter = new EventEmitter();
   const [value, dispatch] = useReducer((a) => a + 1, 0);
 
   useEffect(() => {

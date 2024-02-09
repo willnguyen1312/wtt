@@ -47,7 +47,7 @@ function useForm(defaultState: string, label: string) {
 export default function App() {
   const [formValue, FormComponent, AnotherFormComponent] = useForm(
     "N",
-    "Your name"
+    "Your name",
   );
 
   return (

@@ -13,6 +13,6 @@ startApp().then(() => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <>
       <App />
-    </>
+    </>,
   );
 });
