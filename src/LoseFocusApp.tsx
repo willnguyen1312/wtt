@@ -1,5 +1,23 @@
 import { useEffect, useMemo, useState } from "react";
 
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        type="button"
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        Increment
+      </button>
+    </div>
+  );
+}
+
 function useForm(defaultState: string, label: string) {
   const [value, setValue] = useState(defaultState);
 
@@ -20,6 +38,8 @@ function useForm(defaultState: string, label: string) {
             type="text"
           />
         </label>
+
+        <Counter />
       </form>
     );
   };
@@ -45,9 +65,11 @@ function useForm(defaultState: string, label: string) {
 }
 
 export default function App() {
+  console.log("render App");
+
   const [formValue, FormComponent, AnotherFormComponent] = useForm(
     "N",
-    "Your name",
+    "Your name"
   );
 
   // const component = <FormComponent formValue={formValue} />;
