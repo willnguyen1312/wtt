@@ -4,9 +4,9 @@ function useForm(defaultState: string, label: string) {
   const [value, setValue] = useState(defaultState);
 
   const FormComponent = ({ formValue }: { formValue: string }) => {
-    useEffect(() => {
-      console.log("render with ", formValue);
-    }, []);
+    // useEffect(() => {
+    //   console.log("render with ", formValue);
+    // }, []);
 
     return (
       <form>
@@ -50,12 +50,18 @@ export default function App() {
     "Your name",
   );
 
+  // const component = <FormComponent formValue={formValue} />;
+  const component = FormComponent({ formValue });
+
+  // console.log(component);
+
   return (
     <>
       <h1>{formValue}</h1>
-      {/* <FormComponent formValue={formValue} /> */}
-      {FormComponent({ formValue })}
-      {AnotherFormComponent}
+
+      {component}
+      {/* {FormComponent({ formValue })} */}
+      {/* {AnotherFormComponent} */}
     </>
   );
 }
