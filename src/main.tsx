@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 // import { App } from "./Playground";
-import App from "./MemoryLeak";
+import App from "./ErrorBoundary";
 
 const startApp = async () => {
   if (process.env.NODE_ENV === "development") {
