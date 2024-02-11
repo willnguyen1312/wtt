@@ -1,18 +1,16 @@
 import EventEmitter from "events";
 
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 
 export default function MemoryLeak() {
   const eventEmitter = new EventEmitter();
   const [value, dispatch] = useReducer((a) => a + 1, 0);
 
-  useEffect(() => {
-    console.log("Listeners: ", eventEmitter.listeners("increment").length);
-  }, [value]);
-
-  eventEmitter.on("increment", () => {
-    dispatch();
-  });
+  for (let index = 0; index < 20; index++) {
+    eventEmitter.on("increment", () => {
+      dispatch();
+    });
+  }
 
   function increment() {
     eventEmitter.emit("increment");
