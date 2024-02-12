@@ -92,12 +92,15 @@ export default function Middlewares() {
   stateRef.current = state;
 
   function dispatchWithMiddleware(action: Action) {
-    flushSync(() => {
-      dispatch(action);
-    });
+    dispatch(action);
+    flushSync(() => {});
 
     middlewares.forEach((middleware) => {
-      middleware({ action, dispatch, state: stateRef.current });
+      middleware({
+        action,
+        dispatch: dispatchWithMiddleware,
+        state: stateRef.current,
+      });
     });
   }
 
