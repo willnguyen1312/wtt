@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 // import { App } from "./Playground";
-import App from "./ErrorBoundary";
+// import App from "./ErrorBoundary";
+import App from "./Middlewares";
 
 const startApp = async () => {
   if (process.env.NODE_ENV === "development") {
