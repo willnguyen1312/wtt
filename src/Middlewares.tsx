@@ -1,4 +1,5 @@
-import React, { useReducer } from "react";
+import React from "react";
+import { flushSync } from "react-dom";
 
 type State = {
   value: number;
@@ -81,16 +82,22 @@ const middlewares: MiddleWare[] = [
 ];
 
 export default function Middlewares() {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = React.useReducer(reducer, {
     value: 0,
     addTwoCount: 0,
     addOneCount: 0,
   });
 
+  const stateRef = React.useRef(state);
+  stateRef.current = state;
+
   function dispatchWithMiddleware(action: Action) {
-    dispatch(action);
+    flushSync(() => {
+      dispatch(action);
+    });
+
     middlewares.forEach((middleware) => {
-      middleware({ action, dispatch, state });
+      middleware({ action, dispatch, state: stateRef.current });
     });
   }
 
