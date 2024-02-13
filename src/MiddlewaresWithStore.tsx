@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 type State = {
   value: number;
@@ -123,7 +123,7 @@ export default function Middlewares() {
     storeRef.current.getState
   );
 
-  console.log("State from component:", state);
+  // console.log("State from component:", state);
 
   return (
     <div>
@@ -146,6 +146,24 @@ export default function Middlewares() {
       >
         Add one async
       </button>
+
+      <Child dispatch={storeRef.current?.dispatch} />
+    </div>
+  );
+}
+
+function Child({
+  dispatch,
+}: {
+  dispatch: ReturnType<typeof createStore>["dispatch"];
+}) {
+  useEffect(() => {
+    dispatch({ type: "incrementOne" });
+  }, [dispatch]);
+
+  return (
+    <div>
+      <h1>Child</h1>
     </div>
   );
 }
