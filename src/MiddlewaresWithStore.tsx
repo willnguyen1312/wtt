@@ -157,9 +157,14 @@ function Child({
 }: {
   dispatch: ReturnType<typeof createStore>["dispatch"];
 }) {
+  const [loaded, setLoaded] = React.useState(false);
+
   useEffect(() => {
-    dispatch({ type: "incrementOne" });
-  }, [dispatch]);
+    if (!loaded) {
+      setLoaded(true);
+      dispatch({ type: "incrementOne" });
+    }
+  }, [loaded, dispatch]);
 
   return (
     <div>
