@@ -47,21 +47,6 @@ describe("<MiddlewaresWithStore />", () => {
 
     vi.useRealTimers();
   });
-
-  it("should work for timer", async () => {
-    vi.useFakeTimers();
-
-    const fakeFunc = vi.fn();
-
-    setTimeout(() => {
-      fakeFunc();
-    }, 5000);
-
-    await vi.runAllTimersAsync();
-
-    expect(fakeFunc).toHaveBeenCalledTimes(1);
-    vi.useRealTimers();
-  });
 });
 
 describe("createStore", () => {
