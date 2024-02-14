@@ -29,7 +29,7 @@ describe("<MiddlewaresWithStore />", () => {
     expect(await screen.findByText("Value: 1")).toBeInTheDocument();
   });
 
-  it.only("handle the async action successfully", async () => {
+  it("handle the async action successfully", async () => {
     render(<MiddlewaresWithStore />);
     const user = userEvent.setup();
 

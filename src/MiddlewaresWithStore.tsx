@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 type State = {
   value: number;
@@ -175,15 +175,6 @@ export default function Middlewares() {
 }
 
 function Child({ dispatch, state }: { dispatch: Dispatch; state: State }) {
-  const [loaded, setLoaded] = React.useState(false);
-
-  useEffect(() => {
-    if (!loaded) {
-      setLoaded(true);
-      dispatch({ type: "incrementOne" });
-    }
-  }, [loaded, dispatch]);
-
   return (
     <div>
       <h1>Child</h1>
