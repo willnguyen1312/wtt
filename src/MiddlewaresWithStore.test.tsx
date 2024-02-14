@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
 
 import MiddlewaresWithStore from "./MiddlewaresWithStore";
 import { userEvent } from "@testing-library/user-event";
@@ -30,15 +30,35 @@ describe("<MiddlewaresWithStore />", () => {
   });
 
   it("handle the async action successfully", async () => {
+    vi.useFakeTimers();
     render(<MiddlewaresWithStore />);
     const user = userEvent.setup();
 
     const fetchDataButton = screen.getByRole("button", { name: "Fetch data" });
 
-    await user.click(fetchDataButton);
+    user.click(fetchDataButton);
+
+    vi.runAllTimersAsync();
 
     expect(
       await screen.findByText("Data from async action")
     ).toBeInTheDocument();
+
+    vi.useRealTimers();
+  });
+
+  it("should work for timer", async () => {
+    vi.useFakeTimers();
+
+    const fakeFunc = vi.fn();
+
+    setTimeout(() => {
+      fakeFunc();
+    }, 5000);
+
+    await vi.runAllTimersAsync();
+
+    expect(fakeFunc).toHaveBeenCalledTimes(1);
+    vi.useRealTimers();
   });
 });

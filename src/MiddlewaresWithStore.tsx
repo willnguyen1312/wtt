@@ -185,7 +185,7 @@ function Child({ dispatch, state }: { dispatch: Dispatch; state: State }) {
         onClick={() => {
           dispatch(async (dispatch) => {
             // Wait 1s
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 250));
             dispatch({ type: "setData", payload: "Data from async action" });
           });
         }}
