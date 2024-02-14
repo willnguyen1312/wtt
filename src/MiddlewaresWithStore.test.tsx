@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from "@testing-library/react";
 import { describe, it, vi } from "vitest";
 
-import MiddlewaresWithStore from "./MiddlewaresWithStore";
+import MiddlewaresWithStore, { createStore } from "./MiddlewaresWithStore";
 import { userEvent } from "@testing-library/user-event";
 
 describe("<MiddlewaresWithStore />", () => {
@@ -59,6 +60,135 @@ describe("<MiddlewaresWithStore />", () => {
     await vi.runAllTimersAsync();
 
     expect(fakeFunc).toHaveBeenCalledTimes(1);
+    vi.useRealTimers();
+  });
+});
+
+describe.only("createStore", () => {
+  it("should handle synchronous flow successfully", () => {
+    const store: any = createStore({
+      middlewares: [],
+      reducer: (state, action) => {
+        if (action.type === "increment") {
+          return { ...state, value: state.value + 1 };
+        }
+
+        return state;
+      },
+      initialState: {
+        value: 0,
+      },
+    } as unknown as Parameters<typeof createStore>[0]);
+
+    expect(store.getState()).toEqual({ value: 0 });
+
+    expect(store.dispatch({ type: "increment" }));
+
+    expect(store.getState()).toEqual({ value: 1 });
+  });
+
+  it.only("should handle multiple middlewares flow successfully", () => {
+    let stateFromMiddlewareOne: any;
+    const store: any = createStore({
+      middlewares: [
+        ({ action, dispatch, state }) => {
+          // stateFromMiddlewareOne = { ...state };
+          if (action.type === "actionForMiddleWareOne") {
+            stateFromMiddlewareOne = { ...state };
+            dispatch({ type: "increment" });
+          }
+        },
+        ({ action, dispatch }) => {
+          if (action.type === "actionForMiddleWareTwo") {
+            dispatch({ type: "increment" });
+            dispatch({ type: "actionForMiddleWareOne" });
+          }
+        },
+      ],
+      reducer: (state, action) => {
+        if (action.type === "increment") {
+          return { ...state, value: state.value + 1 };
+        }
+
+        return state;
+      },
+      initialState: {
+        value: 0,
+      },
+    } as unknown as Parameters<typeof createStore>[0]);
+
+    expect(store.getState()).toEqual({ value: 0 });
+
+    expect(store.dispatch({ type: "actionForMiddleWareTwo" }));
+
+    expect(store.getState()).toEqual({ value: 2 });
+    expect(stateFromMiddlewareOne).toEqual({ value: 1 });
+  });
+
+  it("should handle middleware with synchronous actions successfully", () => {
+    const store: any = createStore({
+      middlewares: [
+        ({ action, dispatch }) => {
+          if (action.type === "actionForMiddleWare") {
+            dispatch({ type: "increment" });
+          }
+        },
+      ],
+      reducer: (state, action) => {
+        if (action.type === "actionForMiddleWare") {
+          return { ...state, value: state.value + 1 };
+        }
+
+        return state;
+      },
+      initialState: {
+        value: 0,
+      },
+    } as unknown as Parameters<typeof createStore>[0]);
+
+    expect(store.getState()).toEqual({ value: 0 });
+
+    expect(store.dispatch({ type: "actionForMiddleWare" }));
+
+    expect(store.getState()).toEqual({ value: 1 });
+  });
+
+  it("should handle middleware with asynchronous actions successfully", async () => {
+    vi.useFakeTimers();
+
+    const store: any = createStore({
+      middlewares: [
+        ({ action, dispatch }) => {
+          if (action.type === "asyncActionForMiddleWare") {
+            setTimeout(() => {
+              dispatch({ type: "increment" });
+            }, 1000);
+          }
+        },
+      ],
+      reducer: (state, action) => {
+        if (action.type === "increment") {
+          return { ...state, value: state.value + 1 };
+        }
+
+        return state;
+      },
+      initialState: {
+        value: 0,
+      },
+    } as unknown as Parameters<typeof createStore>[0]);
+
+    expect(store.getState()).toEqual({ value: 0 });
+
+    expect(store.dispatch({ type: "asyncActionForMiddleWare" }));
+
+    await vi.runAllTimersAsync();
+
+    // Wait 1s
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    expect(store.getState()).toEqual({ value: 1 });
+
     vi.useRealTimers();
   });
 });

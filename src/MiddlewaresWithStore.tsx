@@ -83,7 +83,7 @@ const middlewares: MiddleWare[] = [
 
 type Subscriber = () => void;
 
-const createStore = (arg: {
+export const createStore = (arg: {
   middlewares: MiddleWare[];
   reducer: (state: State, action: Action) => State;
   initialState: State;
@@ -101,7 +101,7 @@ const createStore = (arg: {
       state = arg.reducer(state, action);
     }
 
-    middlewares.forEach((middleware) => {
+    arg.middlewares.forEach((middleware) => {
       middleware({
         action,
         dispatch,

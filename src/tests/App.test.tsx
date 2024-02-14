@@ -58,10 +58,8 @@ describe("<App />", () => {
     expect(
       screen.getByText((_, element) => {
         return "hello link nha" === element?.textContent;
-      }),
+      })
     ).toBeInTheDocument();
-
-    screen.logTestingPlaygroundURL();
 
     screen.getAllByRole("listitem").forEach((element, index) => {
       expect(element.textContent).toBe(list[index]);
