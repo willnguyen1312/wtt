@@ -82,7 +82,7 @@ describe("createStore", () => {
 
     expect(store.getState()).toEqual({ value: 0 });
 
-    expect(store.dispatch({ type: "increment" }));
+    store.dispatch({ type: "increment" });
 
     expect(store.getState()).toEqual({ value: 1 });
   });
@@ -119,7 +119,7 @@ describe("createStore", () => {
 
     expect(store.getState()).toEqual({ value: 0 });
 
-    expect(store.dispatch({ type: "actionForMiddleWareTwo" }));
+    store.dispatch({ type: "actionForMiddleWareTwo" });
 
     expect(store.getState()).toEqual({ value: 2 });
     expect(stateFromMiddlewareOne).toEqual({ value: 1 });
@@ -148,7 +148,7 @@ describe("createStore", () => {
 
     expect(store.getState()).toEqual({ value: 0 });
 
-    expect(store.dispatch({ type: "actionForMiddleWare" }));
+    store.dispatch({ type: "actionForMiddleWare" });
 
     expect(store.getState()).toEqual({ value: 1 });
   });
@@ -180,7 +180,7 @@ describe("createStore", () => {
 
     expect(store.getState()).toEqual({ value: 0 });
 
-    expect(store.dispatch({ type: "asyncActionForMiddleWare" }));
+    store.dispatch({ type: "asyncActionForMiddleWare" });
 
     await vi.runAllTimersAsync();
 
