@@ -188,7 +188,7 @@ function Child({ dispatch, state }: { dispatch: Dispatch; state: State }) {
     <div>
       <h1>Child</h1>
 
-      <p>Value: {state.data}</p>
+      <p>{state.data}</p>
 
       <button
         onClick={() => {
