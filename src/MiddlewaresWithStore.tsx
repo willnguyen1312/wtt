@@ -23,7 +23,7 @@ type Action =
       payload: string;
     };
 
-type AsyncAction = (dispatch: Dispatch, state: State) => void;
+type AsyncAction = (dispatch: Dispatch, getState: () => State) => void;
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -91,9 +91,11 @@ const createStore = (arg: {
   let state = arg.initialState;
   const listeners: Set<Subscriber> = new Set();
 
+  const getState = () => state;
+
   const dispatch = (action: Action | AsyncAction) => {
     if (typeof action === "function") {
-      action(dispatch, state);
+      action(dispatch, getState);
       return;
     } else {
       state = arg.reducer(state, action);
@@ -112,7 +114,7 @@ const createStore = (arg: {
 
   return {
     dispatch,
-    getState: () => state,
+    getState,
     subscribe: (subscriber: Subscriber) => {
       listeners.add(subscriber);
       return () => {
