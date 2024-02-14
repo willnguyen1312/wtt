@@ -64,7 +64,7 @@ describe("<MiddlewaresWithStore />", () => {
   });
 });
 
-describe.only("createStore", () => {
+describe("createStore", () => {
   it("should handle synchronous flow successfully", () => {
     const store: any = createStore({
       middlewares: [],
@@ -87,7 +87,7 @@ describe.only("createStore", () => {
     expect(store.getState()).toEqual({ value: 1 });
   });
 
-  it.only("should handle multiple middlewares flow successfully", () => {
+  it("should handle multiple middlewares flow successfully", () => {
     let stateFromMiddlewareOne: any;
     const store: any = createStore({
       middlewares: [
