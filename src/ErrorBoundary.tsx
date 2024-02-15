@@ -17,7 +17,7 @@ function AddCommentButton() {
       onClick={() => {
         setState(() => {
           throw new Error(
-            "Example Error: An error thrown to trigger error boundary"
+            "Example Error: An error thrown to trigger error boundary",
           );
         });
       }}

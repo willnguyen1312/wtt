@@ -42,7 +42,7 @@ describe("<MiddlewaresWithStore />", () => {
     vi.runAllTimersAsync();
 
     expect(
-      await screen.findByText("Data from async action")
+      await screen.findByText("Data from async action"),
     ).toBeInTheDocument();
 
     vi.useRealTimers();
