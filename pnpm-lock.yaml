@@ -31,7 +31,10 @@ dependencies:
     version: 4.0.12(react@18.2.0)
   react-redux:
     specifier: ^9.1.0
-    version: 9.1.0(@types/react@18.2.55)(react@18.2.0)
+    version: 9.1.0(@types/react@18.2.55)(react@18.2.0)(redux@5.0.1)
+  redux:
+    specifier: ^5.0.1
+    version: 5.0.1
 
 devDependencies:
   "@axe-core/playwright":
@@ -6853,7 +6856,7 @@ packages:
       }
     dev: true
 
-  /react-redux@9.1.0(@types/react@18.2.55)(react@18.2.0):
+  /react-redux@9.1.0(@types/react@18.2.55)(react@18.2.0)(redux@5.0.1):
     resolution:
       {
         integrity: sha512-6qoDzIO+gbrza8h3hjMA9aq4nwVFCKFtY2iLxCtVT38Swyy2C/dJCGBXHeHLtx6qlg/8qzc2MrhOeduf5K32wQ==,
@@ -6874,6 +6877,7 @@ packages:
       "@types/react": 18.2.55
       "@types/use-sync-external-store": 0.0.3
       react: 18.2.0
+      redux: 5.0.1
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
@@ -6977,6 +6981,13 @@ packages:
       indent-string: 4.0.0
       strip-indent: 3.0.0
     dev: true
+
+  /redux@5.0.1:
+    resolution:
+      {
+        integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==,
+      }
+    dev: false
 
   /regenerator-runtime@0.14.1:
     resolution:
