@@ -16,7 +16,7 @@ import CounterContextApp, {
 
 import CounterReduxApp from "./CounterReduxApp";
 
-const useGenericSelector = (selector = (state) => state) => {
+const useGenericSelector = (selector) => {
   try {
     return useSelector(selector);
   } catch {}
