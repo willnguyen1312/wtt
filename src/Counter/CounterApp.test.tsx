@@ -18,13 +18,11 @@ import CounterReduxApp from "./CounterReduxApp";
 
 const useGenericSelector = (selector = (state) => state) => {
   try {
-    const result = useSelector(selector);
-    return result;
+    return useSelector(selector);
   } catch {}
 
   try {
-    const result = useReduxSelector(selector);
-    return result;
+    return useReduxSelector(selector);
   } catch {}
 
   throw new Error(
@@ -34,13 +32,11 @@ const useGenericSelector = (selector = (state) => state) => {
 
 const useGenericDispatch = () => {
   try {
-    const result = useDispatch();
-    return result;
+    return useDispatch();
   } catch {}
 
   try {
-    const result = useReduxDispatch();
-    return result;
+    return useReduxDispatch();
   } catch {}
 
   throw new Error(
