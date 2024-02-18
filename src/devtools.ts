@@ -13,7 +13,7 @@ type Message = {
 };
 
 export const devtools = isDEV
-  ? ({ getState, setState }) => {
+  ? ({ getState, setState, dispatch }) => {
       const extensionConnector = window.__REDUX_DEVTOOLS_EXTENSION__;
 
       if (!extensionConnector) {
@@ -36,6 +36,12 @@ export const devtools = isDEV
         }
       ).subscribe((message) => {
         switch (message.type) {
+          case "ACTION":
+            return parseJsonThen(message.payload, (action) => {
+              dispatch(action);
+              return;
+            });
+
           case "DISPATCH":
             switch (message.payload.type) {
               case "RESET":

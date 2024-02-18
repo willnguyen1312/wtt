@@ -99,12 +99,8 @@ export const createStore = (arg: {
     listeners.forEach((listener) => listener());
   };
 
-  const devtoolsResult = devtools?.({
-    getState,
-    setState,
-  });
-
-  console.log("Devtools result:", devtoolsResult);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let devtoolsResult: any = undefined;
 
   const dispatch = (action: Action | AsyncAction) => {
     if (typeof action === "function") {
@@ -126,6 +122,12 @@ export const createStore = (arg: {
 
     listeners.forEach((listener) => listener());
   };
+
+  devtoolsResult = devtools?.({
+    getState,
+    setState,
+    dispatch,
+  });
 
   return {
     dispatch,
