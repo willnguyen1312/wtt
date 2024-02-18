@@ -56,7 +56,7 @@ type MiddleWare = (arg: {
   state: State;
 }) => void;
 
-const logger: MiddleWare = ({ action, state }) => {
+export const logger: MiddleWare = ({ action, state }) => {
   console.log("Action from middleware:", action);
   console.log("State from middleware:", state);
 };
@@ -76,7 +76,7 @@ const incrementOneAsyncMiddleWare: MiddleWare = ({ action, dispatch }) => {
 };
 
 const middlewares: MiddleWare[] = [
-  logger,
+  // logger,
   incrementOneMiddleWare,
   incrementOneAsyncMiddleWare,
 ];
@@ -142,7 +142,7 @@ export default function Middlewares() {
 
   const state = React.useSyncExternalStore(
     storeRef.current.subscribe,
-    storeRef.current.getState,
+    storeRef.current.getState
   );
 
   // console.log("State from component:", state);
