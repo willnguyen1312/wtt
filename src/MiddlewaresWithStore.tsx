@@ -99,10 +99,12 @@ export const createStore = (arg: {
     listeners.forEach((listener) => listener());
   };
 
-  const devtoolsResult = devtools({
+  const devtoolsResult = devtools?.({
     getState,
     setState,
   });
+
+  console.log("Devtools result:", devtoolsResult);
 
   const dispatch = (action: Action | AsyncAction) => {
     if (typeof action === "function") {
