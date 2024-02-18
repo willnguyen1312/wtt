@@ -1,4 +1,5 @@
 import React from "react";
+import { devtools } from "./devtools";
 
 type State = {
   value: number;
@@ -93,6 +94,16 @@ export const createStore = (arg: {
 
   const getState = () => state;
 
+  const setState = (newState: Partial<State>) => {
+    state = { ...state, ...newState };
+    listeners.forEach((listener) => listener());
+  };
+
+  const devtoolsResult = devtools({
+    getState,
+    setState,
+  });
+
   const dispatch = (action: Action | AsyncAction) => {
     if (typeof action === "function") {
       action(dispatch, getState);
@@ -100,6 +111,8 @@ export const createStore = (arg: {
     } else {
       state = arg.reducer(state, action);
     }
+
+    devtoolsResult?.dispatch(action);
 
     arg.middlewares.forEach((middleware) => {
       middleware({
@@ -115,6 +128,7 @@ export const createStore = (arg: {
   return {
     dispatch,
     getState,
+    setState,
     subscribe: (subscriber: Subscriber) => {
       listeners.add(subscriber);
       return () => {
