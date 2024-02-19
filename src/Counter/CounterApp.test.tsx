@@ -26,7 +26,7 @@ const useGenericSelector = (selector) => {
   } catch {}
 
   throw new Error(
-    "useSelector must be used within a React Context or Redux Provider"
+    "useSelector must be used within a React Context or Redux Provider",
   );
 };
 
@@ -40,7 +40,7 @@ const useGenericDispatch = () => {
   } catch {}
 
   throw new Error(
-    "useGenericDispatch must be used within a React Context or Redux Provider"
+    "useGenericDispatch must be used within a React Context or Redux Provider",
   );
 };
 
@@ -64,7 +64,7 @@ describe("<CounterContextApp /> with useGeneric", () => {
     render(
       <CounterContextApp>
         <SharedComponentGeneric />
-      </CounterContextApp>
+      </CounterContextApp>,
     );
 
     const plusButton = screen.getByRole("button", { name: "Add" });
@@ -84,7 +84,7 @@ describe("<CounterReduxApp /> with useGeneric", () => {
     render(
       <CounterReduxApp>
         <SharedComponentGeneric />
-      </CounterReduxApp>
+      </CounterReduxApp>,
     );
 
     const plusButton = screen.getByRole("button", { name: "Add" });
@@ -134,7 +134,7 @@ describe("<CounterContextApp /> with pass props", () => {
     render(
       <CounterContextApp>
         <SharedComponentWithContext />
-      </CounterContextApp>
+      </CounterContextApp>,
     );
 
     const plusButton = screen.getByRole("button", { name: "Add" });
@@ -154,7 +154,7 @@ describe("<CounterReduxApp /> with with pass props", () => {
     render(
       <CounterReduxApp>
         <SharedComponentWithRedux />
-      </CounterReduxApp>
+      </CounterReduxApp>,
     );
 
     const plusButton = screen.getByRole("button", { name: "Add" });
