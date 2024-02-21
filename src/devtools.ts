@@ -5,6 +5,10 @@ import type {} from "@redux-devtools/extension";
 
 const isDEV = import.meta.env.MODE !== "production";
 
+let __id = 0;
+
+const stackTraceMap = new Map<number, string>();
+
 // FIXME https://github.com/reduxjs/redux-devtools/issues/1097
 type Message = {
   type: string;
@@ -59,8 +63,15 @@ export const devtools = isDEV
 
               case "JUMP_TO_STATE":
               case "JUMP_TO_ACTION":
-                return parseJsonThen(message.state, (state) => {
+                return parseJsonThen(message.state, (state: any) => {
                   setState(state);
+
+                  const stackTrace = stackTraceMap.get(state.__id);
+                  if (stackTrace) {
+                    console.clear();
+                    console.log(stackTrace);
+                  }
+
                   return;
                 });
 
@@ -81,7 +92,10 @@ export const devtools = isDEV
 
       return {
         dispatch: (action: any) => {
-          connection.send(action, getState());
+          const stackTrace = new Error("stack trace").stack ?? "";
+          stackTraceMap.set(__id, stackTrace);
+          connection.send(action, { ...getState(), __id });
+          __id++;
         },
       };
     }
