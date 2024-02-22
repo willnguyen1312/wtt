@@ -10,10 +10,10 @@ const startApp = async () => {
   }
 };
 
+const app = <App />;
+
+console.log("App:", app);
+
 startApp().then(() => {
-  ReactDOM.createRoot(document.getElementById("root")!).render(
-    <>
-      <App />
-    </>,
-  );
+  ReactDOM.createRoot(document.getElementById("root")!).render(<>{app}</>);
 });
