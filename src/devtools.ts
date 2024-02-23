@@ -35,7 +35,7 @@ export const devtools = isDEV
         connection as unknown as {
           // FIXME https://github.com/reduxjs/redux-devtools/issues/1097
           subscribe: (
-            listener: (message: Message) => void
+            listener: (message: Message) => void,
           ) => (() => void) | undefined;
         }
       ).subscribe((message) => {
@@ -101,7 +101,7 @@ export const devtools = isDEV
 
 const parseJsonThen = <T>(
   stringified: string,
-  callBack: (parsed: T) => void
+  callBack: (parsed: T) => void,
 ) => {
   let parsed: T | undefined;
   try {
