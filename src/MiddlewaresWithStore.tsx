@@ -51,6 +51,11 @@ function reducer(state: State, action: Action): State {
   }
 }
 
+const context = React.createContext<{
+  dispatch: Dispatch;
+  state: State;
+} | null>(null);
+
 type MiddleWare = (arg: {
   action: Action;
   dispatch: React.Dispatch<Action>;
@@ -160,56 +165,74 @@ export default function Middlewares() {
 
   const state = React.useSyncExternalStore(
     storeRef.current.subscribe,
-    storeRef.current.getState,
+    storeRef.current.getState
   );
 
   // console.log("State from component:", state);
 
   return (
-    <div>
-      <h1>Middlewares</h1>
+    <context.Provider
+      value={{
+        dispatch: storeRef.current.dispatch,
+        state,
+      }}
+    >
+      <div>
+        <h1>Middlewares</h1>
 
-      <p>Value: {state.value}</p>
-
-      <button
-        onClick={() => {
-          storeRef.current?.dispatch({ type: "incrementOne" });
-        }}
-      >
-        Add one
-      </button>
-
-      <button
-        onClick={() => {
-          storeRef.current?.dispatch({ type: "incrementOneAsync" });
-        }}
-      >
-        Add one async
-      </button>
-
-      <Child dispatch={storeRef.current.dispatch} state={state} />
-    </div>
+        <Child />
+      </div>
+    </context.Provider>
   );
 }
 
-function Child({ dispatch, state }: { dispatch: Dispatch; state: State }) {
+function Child() {
+  const { dispatch, state } = React.useContext(context)!;
+
+  const deferredState = React.useDeferredValue(state);
+
   return (
     <div>
       <h1>Child</h1>
 
-      <p>{state.data}</p>
-
       <button
         onClick={() => {
-          dispatch(async (dispatch) => {
-            // Wait 1s
-            await new Promise((resolve) => setTimeout(resolve, 250));
-            dispatch({ type: "setData", payload: "Data from async action" });
+          React.startTransition(() => {
+            dispatch({ type: "incrementOne" });
           });
         }}
       >
-        Fetch data
+        Increment data
       </button>
+
+      <GrandChild state={deferredState} />
     </div>
   );
+}
+
+const GrandChild = React.memo(({ state }: { state: State }) => {
+  console.log({ state });
+  const items: React.ReactNode[] = [];
+  for (let i = 0; i < 500; i++) {
+    items.push(<SlowComponent key={i} />);
+  }
+
+  return (
+    <div>
+      <h1>GrandChild</h1>
+
+      <p>{state.value}</p>
+
+      {items}
+    </div>
+  );
+});
+
+function SlowComponent() {
+  const startTime = performance.now();
+  while (performance.now() - startTime < 2) {
+    // Do nothing for 1 ms per item to emulate extremely slow code
+  }
+
+  return null;
 }

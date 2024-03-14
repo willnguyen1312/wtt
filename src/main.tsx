@@ -1,8 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import ReactDOM from "react-dom/client";
 // import { App } from "./Playground";
 // import App from "./ErrorBoundary";
-// import App from "./MiddlewaresWithStore";
+import App from "./MiddlewaresWithStore";
 
 const startApp = async () => {
   if (process.env.NODE_ENV === "development") {
@@ -11,27 +11,27 @@ const startApp = async () => {
   }
 };
 
-const App = () => {
-  const [value, setValue] = useState(0);
+// const App = () => {
+//   const [value, setValue] = useState(0);
 
-  console.log("App:", value);
+//   console.log("App:", value);
 
-  return (
-    <>
-      <h1>Value: {value}</h1>
+//   return (
+//     <>
+//       <h1>Value: {value}</h1>
 
-      <button
-        onClick={() => {
-          setValue(value + 1);
+//       <button
+//         onClick={() => {
+//           setValue(value + 1);
 
-          setValue((value) => value + 1);
-        }}
-      >
-        Click me
-      </button>
-    </>
-  );
-};
+//           setValue((value) => value + 1);
+//         }}
+//       >
+//         Click me
+//       </button>
+//     </>
+//   );
+// };
 
 // console.log("App:", app);
 
