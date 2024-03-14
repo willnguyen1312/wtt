@@ -165,7 +165,7 @@ export default function Middlewares() {
 
   const state = React.useSyncExternalStore(
     storeRef.current.subscribe,
-    storeRef.current.getState
+    storeRef.current.getState,
   );
 
   // console.log("State from component:", state);
