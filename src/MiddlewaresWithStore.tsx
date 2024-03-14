@@ -170,13 +170,13 @@ export default function Middlewares() {
 
   // console.log("State from component:", state);
 
+  const deferredValue = React.useDeferredValue({
+    dispatch: storeRef.current.dispatch,
+    state,
+  });
+
   return (
-    <context.Provider
-      value={{
-        dispatch: storeRef.current.dispatch,
-        state,
-      }}
-    >
+    <context.Provider value={deferredValue}>
       <div>
         <h1>Middlewares</h1>
 
@@ -188,8 +188,6 @@ export default function Middlewares() {
 
 function Child() {
   const { dispatch, state } = React.useContext(context)!;
-
-  const deferredState = React.useDeferredValue(state);
 
   return (
     <div>
@@ -203,12 +201,15 @@ function Child() {
         Increment data
       </button>
 
-      <GrandChild state={deferredState} />
+      <GrandChild state={state} />
     </div>
   );
 }
 
 const GrandChild = React.memo(({ state }: { state: State }) => {
+  const { state: stateContext } = React.useContext(context)!;
+  console.log({ stateContext });
+
   const items: React.ReactNode[] = [];
   for (let i = 0; i < 500; i++) {
     items.push(<SlowComponent key={i} />);
