@@ -165,7 +165,7 @@ export default function Middlewares() {
 
   const state = React.useSyncExternalStore(
     storeRef.current.subscribe,
-    storeRef.current.getState,
+    storeRef.current.getState
   );
 
   // console.log("State from component:", state);
@@ -197,9 +197,7 @@ function Child() {
 
       <button
         onClick={() => {
-          React.startTransition(() => {
-            dispatch({ type: "incrementOne" });
-          });
+          dispatch({ type: "incrementOne" });
         }}
       >
         Increment data
@@ -211,7 +209,6 @@ function Child() {
 }
 
 const GrandChild = React.memo(({ state }: { state: State }) => {
-  console.log({ state });
   const items: React.ReactNode[] = [];
   for (let i = 0; i < 500; i++) {
     items.push(<SlowComponent key={i} />);
