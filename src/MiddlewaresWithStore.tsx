@@ -201,6 +201,8 @@ export default function Middlewares() {
 function Child() {
   const { dispatch, state } = React.useContext(context)!;
 
+  console.log({ state });
+
   return (
     <div>
       <h1>Child</h1>
@@ -218,28 +220,35 @@ function Child() {
   );
 }
 
-const GrandChild = React.memo(({ state }: { state: State }) => {
-  const { state: stateContext } = React.useContext(context)!;
-  console.log({ stateContext });
+const GrandChild = React.memo(
+  ({ state }: { state: State }) => {
+    // const { state: stateContext } = React.useContext(context)!;
+    // console.log({ stateContext });
 
-  const items: React.ReactNode[] = [];
-  for (let i = 0; i < 500; i++) {
-    items.push(<SlowComponent key={i} />);
+    const items: React.ReactNode[] = [];
+    for (let i = 0; i < 500; i++) {
+      items.push(<SlowComponent key={i} />);
+    }
+
+    return (
+      <div>
+        <h1>GrandChild</h1>
+
+        <TextField />
+
+        <p>{state.value}</p>
+        <p>{state.text}</p>
+
+        {items}
+      </div>
+    );
+  },
+  (prev, current) => {
+    // console.log({ prev, current });
+
+    return prev.state === current.state;
   }
-
-  return (
-    <div>
-      <h1>GrandChild</h1>
-
-      <TextField />
-
-      <p>{state.value}</p>
-      <p>{state.text}</p>
-
-      {items}
-    </div>
-  );
-});
+);
 
 function TextField() {
   const { dispatch, state } = React.useContext(context)!;
