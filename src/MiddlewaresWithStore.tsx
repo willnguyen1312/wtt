@@ -6,6 +6,7 @@ type State = {
   addTwoCount: number;
   addOneCount: number;
   data: string;
+  text: string;
 };
 
 type Dispatch = ReturnType<typeof createStore>["dispatch"];
@@ -22,6 +23,10 @@ type Action =
   | {
       type: "setData";
       payload: string;
+    }
+  | {
+      type: "setText";
+      payload: string;
     };
 
 type AsyncAction = (dispatch: Dispatch, getState: () => State) => void;
@@ -32,6 +37,12 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         value: state.value + 1,
+      };
+
+    case "setText":
+      return {
+        ...state,
+        text: action.payload,
       };
 
     case "countOneActivity":
@@ -159,6 +170,7 @@ export default function Middlewares() {
         addTwoCount: 0,
         addOneCount: 0,
         data: "",
+        text: "voi",
       },
     });
   }
@@ -219,12 +231,31 @@ const GrandChild = React.memo(({ state }: { state: State }) => {
     <div>
       <h1>GrandChild</h1>
 
+      <TextField />
+
       <p>{state.value}</p>
+      <p>{state.text}</p>
 
       {items}
     </div>
   );
 });
+
+function TextField() {
+  const { dispatch, state } = React.useContext(context)!;
+  const [localState, setLocalState] = React.useState(state.text);
+
+  return (
+    <input
+      type="text"
+      value={localState}
+      onChange={(e) => {
+        setLocalState(e.target.value);
+        dispatch({ type: "setText", payload: e.target.value });
+      }}
+    />
+  );
+}
 
 function SlowComponent() {
   const startTime = performance.now();
