@@ -177,7 +177,7 @@ export default function Middlewares() {
 
   const state = React.useSyncExternalStore(
     storeRef.current.subscribe,
-    storeRef.current.getState
+    storeRef.current.getState,
   );
 
   // console.log("State from component:", state);
@@ -247,7 +247,7 @@ const GrandChild = React.memo(
     // console.log({ prev, current });
 
     return prev.state === current.state;
-  }
+  },
 );
 
 function TextField() {
