@@ -8,10 +8,9 @@ export const count = signal({
 });
 
 function increaseCount() {
-  count.value = {
-    ...count.value,
-    numb: count.value.numb + 1,
-  };
+  const previousValue = { ...count.value };
+  previousValue.numb += 1;
+  count.value = previousValue;
 }
 
 function Counter() {
