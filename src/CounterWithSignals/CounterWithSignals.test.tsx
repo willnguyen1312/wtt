@@ -1,5 +1,5 @@
 import { it, describe } from "vitest";
-import App, { count, showSignal } from "./CounterWithSignals";
+import App from "./CounterWithSignals";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -9,7 +9,7 @@ describe("CounterWithSignals", () => {
     render(<App />);
 
     expect(
-      screen.getByRole("heading", { name: /Message: 123/i }),
+      screen.getByRole("heading", { name: /Message: 123/i })
     ).toBeInTheDocument();
 
     const button = screen.getByRole("button", { name: /Toggle/i });
@@ -20,7 +20,7 @@ describe("CounterWithSignals", () => {
     render(<App />);
 
     expect(
-      screen.getByRole("heading", { name: /Message: 123/i }),
+      screen.getByRole("heading", { name: /Message: 123/i })
     ).toBeInTheDocument();
   });
 });
