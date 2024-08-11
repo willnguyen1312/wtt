@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals-react";
+import { signal, computed } from "@preact/signals-react";
 
 export const count = signal({
   hi: {
@@ -6,6 +6,8 @@ export const count = signal({
   },
   numb: 1,
 });
+
+const doubleNumb = computed(() => count.value.numb * 2);
 
 function increaseCount() {
   const previousValue = { ...count.value };
@@ -20,6 +22,7 @@ function Counter() {
       <div>
         <button onClick={increaseCount}>+</button>
       </div>
+      <h1>Double Value: {doubleNumb.value}</h1>
     </>
   );
 }
