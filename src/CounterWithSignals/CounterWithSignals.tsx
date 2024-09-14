@@ -16,7 +16,6 @@ function increaseCount() {
 }
 
 function Counter() {
-  console.log("Counter render");
   return (
     <>
       <h1>Value: {count.value.numb}</h1>
@@ -31,7 +30,6 @@ function Counter() {
 export const showSignal = signal(true);
 
 export default function App() {
-  console.log("App render");
   return (
     <div className="App">
       <button
