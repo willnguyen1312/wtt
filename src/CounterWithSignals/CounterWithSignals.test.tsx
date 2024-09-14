@@ -9,7 +9,7 @@ describe("CounterWithSignals", () => {
     render(<App />);
 
     expect(
-      screen.getByRole("heading", { name: /Message: 123/i })
+      screen.getByRole("heading", { name: /Message: 123/i }),
     ).toBeInTheDocument();
 
     const button = screen.getByRole("button", { name: /toggle/i });

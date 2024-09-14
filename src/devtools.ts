@@ -18,7 +18,7 @@ export const devtools = isDEV
       const extensionConnector = window.__REDUX_DEVTOOLS_EXTENSION__;
 
       if (!extensionConnector) {
-        console.warn("Please install/enable Redux devtools extension");
+        // console.warn("Please install/enable Redux devtools extension");
         return;
       }
 
