@@ -88,7 +88,7 @@ importers:
         version: 4.3.1(vite@5.4.5(@types/node@22.5.5))
       "@vitest/coverage-v8":
         specifier: ^2.1.1
-        version: 2.1.1(vitest@2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.6(typescript@5.6.2)))
+        version: 2.1.1(vitest@2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.7(typescript@5.6.2)))
       "@vitest/ui":
         specifier: ^2.1.1
         version: 2.1.1(vitest@2.1.1)
@@ -111,8 +111,8 @@ importers:
         specifier: ^25.0.0
         version: 25.0.0
       msw:
-        specifier: ^2.4.6
-        version: 2.4.6(typescript@5.6.2)
+        specifier: ^2.4.7
+        version: 2.4.7(typescript@5.6.2)
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -124,7 +124,7 @@ importers:
         version: 0.22.0(rollup@4.21.3)(vite@5.4.5(@types/node@22.5.5))
       vitest:
         specifier: ^2.1.1
-        version: 2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.6(typescript@5.6.2))
+        version: 2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.7(typescript@5.6.2))
 
 packages:
   "@aashutoshrathi/word-wrap@1.2.6":
@@ -1588,10 +1588,10 @@ packages:
         integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==,
       }
 
-  "@mswjs/interceptors@0.35.4":
+  "@mswjs/interceptors@0.35.6":
     resolution:
       {
-        integrity: sha512-PRAZobhu5Kfp4iLOmxjhkfnjiRE8hMUbEjEy0gQJDVcQNJHgx6hZgOisyHnq41oQ5Bp40BQDHPi4BoC/wJXEeQ==,
+        integrity: sha512-PpD687w7qLxVMK176bpQjbzU9O0VC75QnBK5U1lKd29s4hIuxfTItUD6raNKyQ6BN8b64/8HE34RuYTkwH9uPQ==,
       }
     engines: { node: ">=18" }
 
@@ -4123,10 +4123,10 @@ packages:
         integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==,
       }
 
-  msw@2.4.6:
+  msw@2.4.7:
     resolution:
       {
-        integrity: sha512-flx3DIP3+a81vvEY1lCmZVFKVYVcDiizNHg6mHYc2+F2xU+4LmZ6P2eYZUGEFoJWqA3yRWS70pJa0riFVTb5FQ==,
+        integrity: sha512-lLfwzRjTQhaYaoJq600wCFAmjLQnI7JI2VnUDmqj6icZbxgClwJqaJW2/++kkeQvKKoI8rG8NRFMutoG8+LT7w==,
       }
     engines: { node: ">=18" }
     hasBin: true
@@ -4221,12 +4221,6 @@ packages:
     resolution:
       {
         integrity: sha512-gjcpUc3clBf9+210TRaDWbf+rZZZEshZ+DlXMRCeAjp0xhTrnQsKHypIy1J3d5hKdUzj69t708EHtU8P6bUn0A==,
-      }
-
-  outvariant@1.4.2:
-    resolution:
-      {
-        integrity: sha512-Ou3dJ6bA/UJ5GVHxah4LnqDwZRwAmWxrG3wtrHrbGnP4RnLCtA64A4F+ae7Y8ww660JaddSoArUR5HjipWSHAQ==,
       }
 
   outvariant@1.4.3:
@@ -6698,7 +6692,7 @@ snapshots:
       "@jridgewell/resolve-uri": 3.1.1
       "@jridgewell/sourcemap-codec": 1.4.15
 
-  "@mswjs/interceptors@0.35.4":
+  "@mswjs/interceptors@0.35.6":
     dependencies:
       "@open-draft/deferred-promise": 2.2.0
       "@open-draft/logger": 0.3.0
@@ -7052,7 +7046,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  "@vitest/coverage-v8@2.1.1(vitest@2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.6(typescript@5.6.2)))":
+  "@vitest/coverage-v8@2.1.1(vitest@2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.7(typescript@5.6.2)))":
     dependencies:
       "@ampproject/remapping": 2.3.0
       "@bcoe/v8-coverage": 0.2.3
@@ -7066,7 +7060,7 @@ snapshots:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.6(typescript@5.6.2))
+      vitest: 2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.7(typescript@5.6.2))
     transitivePeerDependencies:
       - supports-color
 
@@ -7077,13 +7071,13 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  "@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(msw@2.4.6(typescript@5.6.2))(vite@5.4.5(@types/node@22.5.5))":
+  "@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(msw@2.4.7(typescript@5.6.2))(vite@5.4.5(@types/node@22.5.5))":
     dependencies:
       "@vitest/spy": 2.1.1
       estree-walker: 3.0.3
       magic-string: 0.30.11
     optionalDependencies:
-      msw: 2.4.6(typescript@5.6.2)
+      msw: 2.4.7(typescript@5.6.2)
       vite: 5.4.5(@types/node@22.5.5)
 
   "@vitest/pretty-format@2.1.1":
@@ -7114,7 +7108,7 @@ snapshots:
       sirv: 2.0.4
       tinyglobby: 0.2.6
       tinyrainbow: 1.2.0
-      vitest: 2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.6(typescript@5.6.2))
+      vitest: 2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.7(typescript@5.6.2))
 
   "@vitest/utils@2.1.1":
     dependencies:
@@ -8277,13 +8271,13 @@ snapshots:
 
   ms@2.1.2: {}
 
-  msw@2.4.6(typescript@5.6.2):
+  msw@2.4.7(typescript@5.6.2):
     dependencies:
       "@bundled-es-modules/cookie": 2.0.0
       "@bundled-es-modules/statuses": 1.0.1
       "@bundled-es-modules/tough-cookie": 0.1.6
       "@inquirer/confirm": 3.0.0
-      "@mswjs/interceptors": 0.35.4
+      "@mswjs/interceptors": 0.35.6
       "@open-draft/until": 2.1.0
       "@types/cookie": 0.6.0
       "@types/statuses": 2.0.4
@@ -8291,7 +8285,7 @@ snapshots:
       graphql: 16.8.1
       headers-polyfill: 4.0.2
       is-node-process: 1.2.0
-      outvariant: 1.4.2
+      outvariant: 1.4.3
       path-to-regexp: 6.2.1
       strict-event-emitter: 0.5.1
       type-fest: 4.9.0
@@ -8367,8 +8361,6 @@ snapshots:
       type-check: 0.4.0
 
   os-browserify@0.3.0: {}
-
-  outvariant@1.4.2: {}
 
   outvariant@1.4.3: {}
 
@@ -8970,10 +8962,10 @@ snapshots:
       "@types/node": 22.5.5
       fsevents: 2.3.3
 
-  vitest@2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.6(typescript@5.6.2)):
+  vitest@2.1.1(@types/node@22.5.5)(@vitest/ui@2.1.1)(happy-dom@15.7.4)(jsdom@25.0.0)(msw@2.4.7(typescript@5.6.2)):
     dependencies:
       "@vitest/expect": 2.1.1
-      "@vitest/mocker": 2.1.1(@vitest/spy@2.1.1)(msw@2.4.6(typescript@5.6.2))(vite@5.4.5(@types/node@22.5.5))
+      "@vitest/mocker": 2.1.1(@vitest/spy@2.1.1)(msw@2.4.7(typescript@5.6.2))(vite@5.4.5(@types/node@22.5.5))
       "@vitest/pretty-format": 2.1.1
       "@vitest/runner": 2.1.1
       "@vitest/snapshot": 2.1.1
